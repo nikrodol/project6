@@ -30,16 +30,16 @@ def start():
 def game(coloda, your_cards, comp_cards):
     your_hod = randint(0, 1)
     if your_hod:
-        your_points = your_hod_now(coloda, your_cards)
+        your_points = your_move_now(coloda, your_cards)
         if your_points < 22:
-            comp_points = comp_hod_now(coloda, comp_cards)
+            comp_points = comp_move_now(coloda, comp_cards)
         else:
             comp_points = sum(comp_cards)
             who_win(your_points, comp_points)
     else:
-        comp_points = comp_hod_now(coloda, comp_cards)
+        comp_points = comp_move_now(coloda, comp_cards)
         if comp_points < 22:
-            your_points = your_hod_now(coloda, your_cards)
+            your_points = your_move_now(coloda, your_cards)
         else:
             your_points = sum(your_cards)
             who_win(your_points, comp_points)
@@ -47,7 +47,7 @@ def game(coloda, your_cards, comp_cards):
         who_win(your_points, comp_points)
 
 
-def your_hod_now(coloda, your_cards):
+def your_move_now(coloda, your_cards):
     print('Remember:{}'.format(your_cards))
     print('Are you want take card? If you want you have to say "Yes" ')
     while input().lower() == 'yes':
@@ -59,7 +59,7 @@ def your_hod_now(coloda, your_cards):
     return sum(your_cards)
 
 
-def comp_hod_now(coloda, comp_cards):
+def comp_move_now(coloda, comp_cards):
     while sum(comp_cards) <= 10:
         print('Computer: "Please, croupier give me one card".')
         comp_cards = take_card(coloda, comp_cards)
