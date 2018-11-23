@@ -64,15 +64,15 @@ def comp_move_now(coloda, comp_cards):
         print('Computer: "Please, croupier give me one card".')
         comp_cards = take_card(coloda, comp_cards)
     while sum(comp_cards) <= 15:
-        ver = randint(0, 100)
-        if ver > 50:
+        probability = randint(0, 100)
+        if probability > 50:
             print('Computer: "Hem, I think should take one card" ')
             comp_cards = take_card(coloda, comp_cards)
         else:
             pass
     while sum(comp_cards) <= 18:
-        ver = randint(0, 100)
-        if ver > 75:
+        probability = randint(0, 100)
+        if probability > 75:
             print('Computer: "I love risk. Give me a card!"')
             comp_cards = take_card(coloda, comp_cards)
         else:
