@@ -16,7 +16,7 @@ def main():
 
 
 def start():
-    coloda = [[1, 1, 1, 1], [2, 2, 2, 2], [3, 3, 3, 3], [4, 4, 4, 4], [5, 5, 5, 5], [6, 6, 6, 6], [7, 7, 7, 7], [8, 8, 8, 8], [9, 9, 9, 9], [10, 10, 10, 10]]
+    coloda = [[2, 2, 2, 2], [3, 3, 3, 3], [4, 4, 4, 4], [5, 5, 5, 5], [6, 6, 6, 6], [7, 7, 7, 7], [8, 8, 8, 8], [9, 9, 9, 9], [10, 10, 10, 10], [11, 11, 11, 11]]
     your_cards = []
     comp_cards = []
     your_cards = take_card(coloda, your_cards)
@@ -28,22 +28,18 @@ def start():
 
 
 def game(coloda, your_cards, comp_cards):
-    your_hod = randint(0, 1)
-    if your_hod:
+    your_move = randint(0, 1)
+    if your_move:
+        print('First move is your.')
         your_points = your_move_now(coloda, your_cards)
-        if your_points < 22:
-            comp_points = comp_move_now(coloda, comp_cards)
-        else:
-            comp_points = sum(comp_cards)
-            who_win(your_points, comp_points)
-    else:
+        print('And second move is copmputer\'s move.')
         comp_points = comp_move_now(coloda, comp_cards)
-        if comp_points < 22:
-            your_points = your_move_now(coloda, your_cards)
-        else:
-            your_points = sum(your_cards)
-            who_win(your_points, comp_points)
-    if your_points < 22 and comp_points < 22:
+        who_win(your_points, comp_points)
+    else:
+        print('First move is computer\'s.')
+        comp_points = comp_move_now(coloda, comp_cards)
+        print('And second move is computer\'s.')
+        your_points = your_move_now(coloda, your_cards)
         who_win(your_points, comp_points)
 
 
@@ -90,7 +86,7 @@ def take_card(coloda, cards):
     j = randint(0, len(coloda[i])-1)
     cards.append(coloda[i][j])
     k = len(coloda[i])
-    coloda[i] = [i+2 for x in range(0, k-1)]
+    coloda[i] = [i+1 for x in range(0, k-1)]
     return cards
 
 
@@ -100,15 +96,17 @@ def who_win(your_points, comp_points):
     print('Computer list of cards:{}'.format(comp_points))
     if your_points < 22 and comp_points < 22:
         if your_points > comp_points:
-            print('You win!')
+            print('You are win!')
         elif your_points == comp_points:
             print('It is dead heat, good job guys!')
         else:
-            print('You lose!')
+            print('You are lose!')
     elif your_points < 22 and comp_points > 21:
-        print('You win!')
+        print('You are win!')
+    elif your_points > 21 and comp_points < 22:
+        print('You are lose!')
     else:
-        print('You lose!')
+        print('You and computer are lose. It is dead heat')
 
 
 if __name__ == '__main__':
