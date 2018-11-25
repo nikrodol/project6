@@ -38,7 +38,7 @@ def game(coloda, your_cards, comp_cards):
     else:
         print('First move is computer\'s.')
         comp_points = comp_move_now(coloda, comp_cards)
-        print('And second move is computer\'s.')
+        print('And second move is your.')
         your_points = your_move_now(coloda, your_cards)
         who_win(your_points, comp_points)
 
@@ -69,8 +69,6 @@ def comp_move_now(coloda, comp_cards):
         if probability > 75:
             print('Computer: "I love risk. Give me a card!"')
             comp_cards = take_card(coloda, comp_cards)
-    else:
-        print('Computer: "Yeah! I will win!"')
     print('Computer: "It is all"')
     return sum(comp_cards)
 
